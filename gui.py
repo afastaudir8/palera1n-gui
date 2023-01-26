@@ -3,6 +3,8 @@ import time
 import subprocess
 from other import *
 
+
+
 root = Tk()
 root.geometry("300x300")
 root.title('shitty palera1n gui')
@@ -53,34 +55,68 @@ dropdown = OptionMenu(root, selected, *versions)
 dropdown.grid(row=5, column=0)
 versionselected = selected.get()
 
-def semitetherbutton():
-    global col
-    global semitether
-    semitether = True
-    if semitether == True:
-        semitether == False
-    elif semitether == False:
-        semitether == True
+semitether = True
+stcolour = "green"
+
+
+
+
 
 
 def jailbreak():
+    global palera1n
     if os.path.exists("./palera1n"):
         os.chdir("./palera1n")
         if semitether == True:
-            subprocess.call(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered"])
+            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered"])
         elif semitether == False:
-            subprocess.call(["sudo", "./palera1n.sh", "--tweaks", versionselected])
+            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected])
     else:
         print("[!] palera1n is not installed. Please run Clone/Pull.")
 
-test = 1
-btn2 = Button(root, text="Semi-Tethered", command = semitetherbutton())
+def restorerootfs():
+    global palera1n
+    if os.path.exists('./palera1n'):
+        os.chdir("./palera1n")
+        if semitether == True:
+            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered", "--restorerootfs"])
+        elif semitether == False:
+            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--restorerootfs"])
+    else:
+        print("[!] palera1n not installed. Please press Clone/Pull to install it")
+
+
+def semitetherbutton():
+    global semitether
+    global stcolour
+    if semitether == True:
+        semitether = False
+        stcolour = "red"
+    elif semitether == False:
+        semitether = True
+        stcolour = "green"
+    print(semitether)
+    btn2.configure(fg = stcolour)
+
+def cancel():
+    print("")
+    try:
+        palera1n.terminate()
+    except Exception as terminatefail:
+        print("[!] Something went wrong")
+        print(terminatefail)
+
+btn2 = Button(root, text="Semi-Tethered", command = semitetherbutton, fg="green")
 btn2.grid(row=6, column=0)
 
-if semitether == True:
-    btn2.configure(fg="green")
-elif semitether == False:
-    btn2.configure(fg="red")
+btn3 = Button(root, text="Jailbreak!", command = jailbreak)
+btn3.grid (row=7, column=0)
+
+btn4 = Button(root, text="Restore rootFS", command =restorerootfs)
+btn4.grid(row=8, column=0)
+
+btn5 = Button(root, text="Stop palera1n (unsafe)", bg="red",command=cancel)
+btn5.grid(row = 9, column = 0)
 
 
 root.mainloop()

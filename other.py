@@ -16,3 +16,10 @@ def dfuhelper():
         subprocess.call(["sudo", "./palera1n.sh", "--dfuhelper"])
     else:
         print("[!] palera1n not installed, press Clone/Pull in the GUI")
+
+def uninstall():
+    if os.path.exists("./palera1n"):
+        print("[*] Uninstalling palera1n...")
+        subprocess.call(["sudo", "rm", "-rf" "./palera1n"])
+    else:
+        print("[!] Can't uninstall palera1n because it isn't installed in the first place...")
