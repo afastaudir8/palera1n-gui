@@ -2,7 +2,13 @@ from tkinter import *
 import time
 import subprocess
 from other import *
+import sys
+from sys import platform
 
+if platform == "win32":
+    print("[!] windows user")
+    sys.exit()
+    
 
 
 root = Tk()
@@ -95,16 +101,18 @@ def semitetherbutton():
     elif semitether == False:
         semitether = True
         stcolour = "green"
-    print(semitether)
+#h    print(semitether)
     btn2.configure(fg = stcolour)
 
 def cancel():
-    print("")
+    print("Killing palera1n...")
     try:
         palera1n.terminate()
-    except Exception as terminatefail:
-        print("[!] Something went wrong")
-        print(terminatefail)
+    except NameError:
+        print("[!] palera1n is either not running or has already been killed")
+    except Exception as error:
+        print(f'[!] An error occured: {error}')
+
 
 btn2 = Button(root, text="Semi-Tethered", command = semitetherbutton, fg="green")
 btn2.grid(row=6, column=0)
