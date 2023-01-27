@@ -6,8 +6,10 @@ import sys
 from sys import platform
 
 if platform == "win32":
-    print("[!] windows user")
+    print("[!] palera1n does not work on Windows")
     sys.exit()
+else:
+    print(f'Running on {platform}')
     
 
 
