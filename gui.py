@@ -79,6 +79,7 @@ def jailbreak():
             palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered"])
         elif semitether == False:
             palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected])
+        os.chdir("..")
     else:
         print("[!] palera1n is not installed. Please run Clone/Pull.")
 
@@ -90,6 +91,7 @@ def restorerootfs():
             palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered", "--restorerootfs"])
         elif semitether == False:
             palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--restorerootfs"])
+        os.chdir("..")
     else:
         print("[!] palera1n not installed. Please press Clone/Pull to install it")
 
@@ -110,10 +112,8 @@ def cancel():
     print("Killing palera1n...")
     try:
         palera1n.terminate()
-    except NameError:
-        print("[!] palera1n is either not running or has already been killed")
-    except Exception as error:
-        print(f'[!] An error occured: {error}')
+    except:
+        otherterminate()
 
 
 btn2 = Button(root, text="Semi-Tethered", command = semitetherbutton, fg="green")
