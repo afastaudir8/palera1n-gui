@@ -14,7 +14,7 @@ else:
 
 
 root = Tk()
-root.geometry("300x300")
+root.geometry("235x300")
 root.title('shitty palera1n gui')
 
 txt = Label(root, text="Shitty palera1n GUI")
@@ -128,5 +128,7 @@ btn4.grid(row=8, column=0)
 btn5 = Button(root, text="Stop palera1n (unsafe)", bg="red",command=cancel)
 btn5.grid(row = 9, column = 0)
 
+btn6 = Button(root, text="Uninstall palera1n (unsafe)", bg = "red", command = uninstall)
+btn6.grid(row=10, column = 0)
 
 root.mainloop()
