@@ -20,6 +20,7 @@ def dfuhelper():
 def uninstall():
     if os.path.exists("./palera1n"):
         print("[*] Uninstalling palera1n...")
-        subprocess.call(["sudo", "rm", "-rf" "./palera1n"])
+        subprocess.call(["sudo", "rm", "-rf", "./palera1n"])
+        print("[*] palera1n has been successfully uninstalled!")
     else:
         print("[!] Can't uninstall palera1n because it isn't installed in the first place...")
