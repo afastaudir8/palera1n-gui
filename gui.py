@@ -67,7 +67,8 @@ versionselected = selected.get()
 semitether = True
 stcolour = "green"
 
-
+root = True
+rcolour = "green"
 
 
 
@@ -75,10 +76,13 @@ def jailbreak():
     global palera1n
     if os.path.exists("./palera1n"):
         os.chdir("./palera1n")
-        if semitether == True:
-            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered"])
-        elif semitether == False:
-            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected])
+        if root == True:
+            if semitether == True:
+                palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered"])
+            elif semitether == False:
+                palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected])
+        elif root == False:
+            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", versionselected])
         os.chdir("..")
     else:
         print("[!] palera1n is not installed. Please run Clone/Pull.")
@@ -87,10 +91,13 @@ def restorerootfs():
     global palera1n
     if os.path.exists('./palera1n'):
         os.chdir("./palera1n")
-        if semitether == True:
-            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered", "--restorerootfs"])
-        elif semitether == False:
-            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--restorerootfs"])
+        if root == True:
+            if semitether == True:
+                palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered", "--restorerootfs"])
+            elif semitether == False:
+                palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--restorerootfs"])
+        elif root == False:
+            palera1n = subprocess.Popen(["sudo", "./palera1n.sh", versionselected, "--restorerootfs"])
         os.chdir("..")
     else:
         print("[!] palera1n not installed. Please press Clone/Pull to install it")
@@ -103,12 +110,27 @@ def semitetherbutton():
         semitether = False
         stcolour = "red"
     elif semitether == False:
+        if root== False:
+            root = True
+            rcolour = "green"
         semitether = True
         stcolour = "green"
 #h    print(semitether)
     btn2.configure(fg = stcolour)
 
 def root():
+    global root
+    global semitether
+    if root == True:
+        root = False
+        semitether = False
+        rcolour = "red"
+        stcolour = 'red'
+    elif rot == False:
+        root = True
+        rcolour = "green"
+    btn7.confgure(fg = rcolour)
+    btn2.configure(fg = stcolour)
 
 
 def cancel():
