@@ -108,7 +108,7 @@ def semitetherbutton():
 #h    print(semitether)
     btn2.configure(fg = stcolour)
 
-def root():
+
 
 
 def cancel():
