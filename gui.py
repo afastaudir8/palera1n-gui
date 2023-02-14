@@ -126,7 +126,7 @@ def root():
         semitether = False
         rcolour = "red"
         stcolour = 'red'
-    elif rot == False:
+    elif root == False:
         root = True
         rcolour = "green"
     btn7.confgure(fg = rcolour)
@@ -156,6 +156,6 @@ btn5.grid(row = 9, column = 0)
 btn6 = Button(root, text="Uninstall palera1n (unsafe)", bg = "red", command = uninstall)
 btn6.grid(row=10, column = 0)
 
-btn7 = Button(root, text = "Rootfull")
-
+btn7 = Button(root, text = "Rootfull", command=root, fg="green")
+btn7.grid (row=11,column=0)
 root.mainloop()
