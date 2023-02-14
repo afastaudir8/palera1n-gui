@@ -67,7 +67,7 @@ versionselected = selected.get()
 semitether = True
 stcolour = "green"
 
-root = True
+rooted = True
 rcolour = "green"
 
 
@@ -91,12 +91,12 @@ def restorerootfs():
     global palera1n
     if os.path.exists('./palera1n'):
         os.chdir("./palera1n")
-        if root == True:
+        if rooted == True:
             if semitether == True:
                 palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered", "--restorerootfs"])
             elif semitether == False:
                 palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--restorerootfs"])
-        elif root == False:
+        elif rooted == False:
             palera1n = subprocess.Popen(["sudo", "./palera1n.sh", versionselected, "--restorerootfs"])
         os.chdir("..")
     else:
@@ -111,23 +111,23 @@ def semitetherbutton():
         stcolour = "red"
     elif semitether == False:
         if root== False:
-            root = True
+            rooted = True
             rcolour = "green"
         semitether = True
         stcolour = "green"
 #h    print(semitether)
     btn2.configure(fg = stcolour)
 
-def root():
-    global root
+def rootful():
+    global rooted
     global semitether
-    if root == True:
-        root = False
+    if rooted == True:
+        rooted = False
         semitether = False
         rcolour = "red"
         stcolour = 'red'
-    elif root == False:
-        root = True
+    elif rooted == False:
+        rooted = True
         rcolour = "green"
     btn7.confgure(fg = rcolour)
     btn2.configure(fg = stcolour)
@@ -156,6 +156,6 @@ btn5.grid(row = 9, column = 0)
 btn6 = Button(root, text="Uninstall palera1n (unsafe)", bg = "red", command = uninstall)
 btn6.grid(row=10, column = 0)
 
-btn7 = Button(root, text = "Rootfull", command=root, fg="green")
+btn7 = Button(root, text = "Rootfull", command = rootful, fg="green")
 btn7.grid (row=11,column=0)
 root.mainloop()
