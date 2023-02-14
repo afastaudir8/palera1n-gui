@@ -53,7 +53,8 @@ versions = [
     "16.1.1",
     "16.1.2",
     "16.2",
-    "16.3"
+    "16.3",
+    "16.3.1"
 ]
 
 selected = StringVar(root)
@@ -65,7 +66,6 @@ versionselected = selected.get()
 
 semitether = True
 stcolour = "green"
-
 
 
 
@@ -108,6 +108,9 @@ def semitetherbutton():
 #h    print(semitether)
     btn2.configure(fg = stcolour)
 
+def root():
+
+
 def cancel():
     print("Killing palera1n...")
     try:
@@ -130,5 +133,7 @@ btn5.grid(row = 9, column = 0)
 
 btn6 = Button(root, text="Uninstall palera1n (unsafe)", bg = "red", command = uninstall)
 btn6.grid(row=10, column = 0)
+
+btn7 = Button(root, text = "Rootfull")
 
 root.mainloop()
