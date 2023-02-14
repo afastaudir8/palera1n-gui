@@ -14,7 +14,7 @@ else:
 
 
 root = Tk()
-root.geometry("235x300")
+root.geometry("235x350")
 root.title('shitty palera1n gui')
 
 txt = Label(root, text="Shitty palera1n GUI")
@@ -76,12 +76,12 @@ def jailbreak():
     global palera1n
     if os.path.exists("./palera1n"):
         os.chdir("./palera1n")
-        if root == True:
+        if rooted == True:
             if semitether == True:
                 palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected, "--semi-tethered"])
             elif semitether == False:
                 palera1n = subprocess.Popen(["sudo", "./palera1n.sh", "--tweaks", versionselected])
-        elif root == False:
+        elif rooted == False:
             palera1n = subprocess.Popen(["sudo", "./palera1n.sh", versionselected])
         os.chdir("..")
     else:
@@ -106,15 +106,18 @@ def restorerootfs():
 def semitetherbutton():
     global semitether
     global stcolour
+    global rooted
+    global rcolour
     if semitether == True:
         semitether = False
         stcolour = "red"
     elif semitether == False:
-        if root== False:
+        if rooted == False:
             rooted = True
             rcolour = "green"
         semitether = True
         stcolour = "green"
+        btn7.configure(fg = rcolour)
 #h    print(semitether)
     btn2.configure(fg = stcolour)
 
@@ -129,7 +132,8 @@ def rootful():
     elif rooted == False:
         rooted = True
         rcolour = "green"
-    btn7.confgure(fg = rcolour)
+        stcolour = "red"
+    btn7.configure(fg = rcolour)
     btn2.configure(fg = stcolour)
 
 
@@ -145,17 +149,17 @@ btn2 = Button(root, text="Semi-Tethered", command = semitetherbutton, fg="green"
 btn2.grid(row=6, column=0)
 
 btn3 = Button(root, text="Jailbreak!", command = jailbreak)
-btn3.grid (row=7, column=0)
+btn3.grid (row=8, column=0)
 
 btn4 = Button(root, text="Restore rootFS", command =restorerootfs)
-btn4.grid(row=8, column=0)
+btn4.grid(row=9, column=0)
 
 btn5 = Button(root, text="Stop palera1n (unsafe)", bg="red",command=cancel)
-btn5.grid(row = 9, column = 0)
+btn5.grid(row = 10, column = 0)
 
 btn6 = Button(root, text="Uninstall palera1n (unsafe)", bg = "red", command = uninstall)
-btn6.grid(row=10, column = 0)
+btn6.grid(row=11, column = 0)
 
 btn7 = Button(root, text = "Rootfull", command = rootful, fg="green")
-btn7.grid (row=11,column=0)
+btn7.grid (row=7,column=0)
 root.mainloop()
