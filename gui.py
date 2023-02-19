@@ -55,6 +55,7 @@ versions = [
     "16.2",
     "16.3",
     "16.3.1"
+    "16.4 (experimental)"
 ]
 
 selected = StringVar(root)
